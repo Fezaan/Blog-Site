@@ -20,6 +20,23 @@ app.post("/", (req,res)=>{
 });
 
 
+app.get("/about", (req,res)=>{
+  res.render('about',{home: aboutContent});
+});
+
+app.get("/contact", (req,res)=>{
+  res.render('contact',{home: contactContent});
+});
+
+app.get("/compose", (req,res)=>{
+  res.render('compose');
+});
+app.post("/compose", (req,res)=>{
+  console.log(req.body.inp);
+});
+
+
+
 
 
 
