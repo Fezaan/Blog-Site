@@ -3,8 +3,8 @@
 <p><%= home %></p>
 
 <% posts.forEach(function(element){ %>
-    <h1><%= element.inp %></h1>
-    <p><%= element.post.substring(0,60)+"......." %><a href="/posts/<%=element.inp %>">Read More</a></p>
+    <h1><%= element.heading %></h1>
+    <p><%= element.content.substring(0,60)+"......." %><a href="/posts/<%=element.heading %>">Read More</a></p>
 <% }); %>
 
 <%- include("partials/footer") -%>

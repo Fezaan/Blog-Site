@@ -34,7 +34,7 @@ async function main() {
     Blog = mongoose.model("Blog", blogSchema);
 
     let blog1 = new Blog({
-      heading: "Home",
+      heading: "Day 1",
       content:
         "Welcome to my blog website here you can see all my blogs and my current updates.",
     });
@@ -44,7 +44,7 @@ async function main() {
       if (pri.length === 0) {
         blog1.save();
       }
-      res.render("home", { home: homeStartingContent, posts: posts });
+      res.render("home", { home: homeStartingContent, posts: pri });
     });
   } catch (err) {
     console.log("ERR" + err);
@@ -73,11 +73,12 @@ app.post("/compose", async (req, res) => {
   res.redirect("/");
 });
 
-app.get("/posts/:gamble", (req, res) => {
+app.get("/posts/:gamble", async (req, res) => {
   let route = _.lowerCase(req.params.gamble);
-  posts.forEach(function (element) {
-    if (_.lowerCase(element.inp) === route) {
-      res.render("post", { title: element.inp, content: element.post });
+  let pri = await Blog.find();
+  pri.forEach(async function (element) {
+    if (_.lowerCase(element.heading) === route) {
+      res.render("post", { title: element.heading, content: element.content });
     }
   });
 });
