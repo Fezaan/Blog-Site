@@ -64,12 +64,12 @@ app.get("/compose", (req, res) => {
   res.render("compose");
 });
 app.post("/compose", async (req, res) => {
-  let obj = {
-    inp: req.body.inp,
-    post: req.body.post,
-  };
-  obj.save();
-  console.log(await Blog.find());
+  let obj = new Blog({
+    heading: req.body.inp,
+    content: req.body.post,
+  });
+  await obj.save();
+  // console.log(await Blog.find());
   res.redirect("/");
 });
 
